@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KitchenHelp</string>
+    <string name="welcome">Welcome!</string>
+    <string name="show_items">Show Items</string>
+    <string name="show_tasteline">Show Tasteline</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_pic">Item Picture</string>
+    <string name="item_delete">Delete</string>
+</resources>
