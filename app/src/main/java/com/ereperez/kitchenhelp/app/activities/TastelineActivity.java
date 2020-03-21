@@ -12,6 +12,9 @@ import android.webkit.WebViewClient;
 
 import com.ereperez.kitchenhelp.R;
 
+/**
+ * Layout/activity for webview for the tasteline website
+ */
 public class TastelineActivity extends AppCompatActivity {
 
     @Override
@@ -21,6 +24,7 @@ public class TastelineActivity extends AppCompatActivity {
 
         WebView myWebView = (WebView) findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();
+        //manually enable JS since this website uses it for some stuff
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebChromeClient(new WebChromeClient());
         myWebView.setWebViewClient(new WebViewClient());

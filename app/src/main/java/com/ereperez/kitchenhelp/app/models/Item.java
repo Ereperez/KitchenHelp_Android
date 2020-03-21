@@ -1,5 +1,8 @@
 package com.ereperez.kitchenhelp.app.models;
 
+/**
+ * Constructor model with setters & getters to form the itemlist with jsondata
+ */
 public class Item {
     String name;
     String url;

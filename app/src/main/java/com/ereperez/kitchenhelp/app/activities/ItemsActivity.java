@@ -30,6 +30,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+* Activity that handles the population of acvitity_items with row_items with the help of RecycleAdapter
+* Uses Volley library and Picasso
+ */
 public class ItemsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Item> itemList = new ArrayList<>();
@@ -53,7 +57,11 @@ public class ItemsActivity extends AppCompatActivity {
         requestWithVolley();
     }
 
-
+    /**
+     * Requests the items from the json list from the URL
+     * Uses Volley library to get the json data
+     * Adds the data to a arraylist
+     */
     public void requestWithVolley() {
         RequestQueue queue = Volley.newRequestQueue(this);
         // URL for volley to use
@@ -65,9 +73,10 @@ public class ItemsActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
 
+                        //for loop for the objects in array
                         for (int i = 0; i < response.length(); i++) {
                             try {
-
+                                //add the objects to the arraylist
                                 JSONObject objects = response.getJSONObject(i);
                                 String name = objects.getString("name");
                                 String url = objects.getString("picture");
@@ -76,6 +85,7 @@ public class ItemsActivity extends AppCompatActivity {
                                 itemList.add(item);
 
                             } catch(JSONException e){
+                                //add error message for the item to list
                                 String error = "error loading";
                                 Item er = new Item(error, error, error);
                                 itemList.add(er);
@@ -88,6 +98,7 @@ public class ItemsActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                //toast error message
                 Toast.makeText(ItemsActivity.this, "Couldn't load data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -95,41 +106,5 @@ public class ItemsActivity extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(jsonRequest);
     }
-
-/*
-    public void deleteVolley(String id){
-
-        //RequestQueue queue = Volley.newRequestQueue(this);
-        String deleteUrl = url + id;
-
-        JsonObjectRequest dr = new JsonObjectRequest(Request.Method.DELETE, deleteUrl, null,
-                new Response.Listener<JSONObject>()
-                {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try{
-                            // response
-                            Toast.makeText(ItemsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
-
-                        } catch(Exception e){
-                            // response
-                            Toast.makeText(ItemsActivity.this, "Error: " + e.toString(), Toast.LENGTH_LONG).show();
-
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error.
-                        Toast.makeText(ItemsActivity.this, "Couldn't delete item: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-        queue.add(dr);
-    }
-*/
 
 }

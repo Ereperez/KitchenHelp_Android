@@ -8,6 +8,9 @@ import android.view.View;
 
 import com.ereperez.kitchenhelp.R;
 
+/**
+* Start layout/activity for the application that has two buttons, one for webview and another one for itemlist
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
